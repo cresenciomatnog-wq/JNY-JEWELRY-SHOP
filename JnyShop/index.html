@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JNY Jewelry Shop</title>
+  <link rel="stylesheet" href="JnyShop.css">
+</head>
+<body>
+
+  <!-- HEADER & NAVIGATION -->
+  <header>
+    <div class="navbar">
+      <div class="brand">JNY JEWELRY</div>
+      <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search gold items..." oninput="applyFilters()">
+      </div>
+      <button class="cart-btn" onclick="toggleCart()">
+        🛒 Cart <span class="cart-badge" id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <section class="hero">
+      <h1>JNY Jewelry Shop</h1>
+      <p>Caloocan Branch • Fine Gold & Custom Jewelry</p>
+    </section>
+
+    <!-- FEATURE 1: CATEGORY FILTERING -->
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterCategory('all', this)">All</button>
+      <button class="filter-btn" onclick="filterCategory('Necklaces', this)">Chains</button>
+      <button class="filter-btn" onclick="filterCategory('Rings', this)">Rings</button>
+      <button class="filter-btn" onclick="filterCategory('Bracelets', this)">Bracelets</button>
+      <button class="filter-btn" onclick="filterCategory('Earrings', this)">Earrings</button>
+    </div>
+
+    <!-- CATALOG GRID -->
+    <div class="product-grid" id="productGrid"></div>
+  </main>
+
+  <!-- FEATURE 2: CART DRAWER -->
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <h3>Shopping Cart</h3>
+      <button class="close-btn" onclick="toggleCart()">&times;</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total:</span>
+        <span id="cartTotal">₱0.00</span>
+      </div>
+      <button class="checkout-btn" id="checkoutBtn" onclick="openCheckout()" disabled>Proceed to Checkout</button>
+    </div>
+  </div>
+
+  <!-- FEATURE 3: CHECKOUT MODAL -->
+  <div class="modal-overlay" id="checkoutModal">
+    <div class="modal-content">
+      <h2>Checkout Order</h2>
+      <form id="checkoutForm" onsubmit="handleOrderSubmit(event)">
+        <div class="form-group">
+          <label for="name">Customer Name</label>
+          <input type="text" id="name" required placeholder="Full Name">
+        </div>
+        <div class="form-group">
+          <label for="contact">Contact Number</label>
+          <input type="tel" id="contact" required placeholder="09123456789">
+        </div>
+        <div class="form-group">
+          <label for="payment">Payment Method</label>
+          <select id="payment" required>
+            <option value="GCash">GCash</option>
+            <option value="Store Pickup">Store Pickup (Caloocan)</option>
+            <option value="Bank Transfer">Bank Transfer</option>
+          </select>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn-secondary" onclick="closeCheckout()">Cancel</button>
+          <button type="submit" class="checkout-btn" style="width: auto; padding: 0.6rem 1.2rem;">Confirm Order</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">Added to cart!</div>
+
+  <script src="JnyShop.js"></script>
+</body>
+</html>
